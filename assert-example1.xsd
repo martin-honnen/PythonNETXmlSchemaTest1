@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning" elementFormDefault="qualified"
+    vc:minVersion="1.1">
+
+  <xs:element name="Project">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="PLC" maxOccurs="unbounded">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Type">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="TypeDef">
+                      <xs:complexType>
+                        <xs:attribute name="ID" type="xs:integer"/>
+                        <xs:attribute name="Name" type="xs:string"/>
+                        <xs:attribute name="Description" type="xs:string"/>
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="SA" maxOccurs="unbounded">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="Station">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="EM" maxOccurs="unbounded">
+                            <xs:complexType>
+                              <xs:attribute name="ID" type="xs:integer"/>
+                              <xs:attribute name="Name" type="xs:string"/>
+                              <xs:attribute name="IsRobot" type="xs:string"/>
+                            </xs:complexType>
+                          </xs:element>
+                        </xs:sequence>
+                        <xs:attribute name="ID" type="xs:integer"/>
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                  <xs:attribute name="ID" type="xs:integer"/>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+            <xs:attribute name="Name" type="xs:string"/>
+            <xs:assert id="no-duplicate-names"
+                test="every $station1 in .//Station satisfies
+                                  every $station2 in .//Station[not($station1 is .) and $station1/@ID = @ID] satisfies 
+                                  not($station1/EM/@Name = $station2/EM/@Name)"/>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+</xs:schema>

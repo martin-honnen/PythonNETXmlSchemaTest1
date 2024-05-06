@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Project>
+  <PLC Name="PLC">
+    <Type>
+      <TypeDef ID="1" Name="G05" Description="" />
+    </Type>
+    <SA ID="01">
+      <Station ID="100">
+        <EM ID="01" Name="IR01" IsRobot="TRUE"></EM>
+      </Station>
+    </SA>
+    <SA ID="02">
+      <Station ID="100">
+        <EM ID="02" Name="IR04" IsRobot="TRUE"></EM>
+        <EM ID="03" Name="IR03" IsRobot="TRUE"></EM>
+      </Station>
+    </SA>
+  </PLC>
+</Project>
